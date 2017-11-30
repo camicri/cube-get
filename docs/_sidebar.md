@@ -1,0 +1,9 @@
+- **Camicri Cube**
+ - [About](README.md)
+ - [Download](download.md)
+- **Guide**
+ - [Setting up on offline Linux](setup-linux.md)
+ - [Setting up on Windows](setup-windows.md)
+ - [Downloading Repositories](download-repository.md)
+ - [Downloading Packages](download-package.md)
+ - [Installing Packages](install-package.md)

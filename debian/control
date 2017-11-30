@@ -1,0 +1,15 @@
+Source: cube-server
+Section: admin
+Priority: extra
+Maintainer: Jake Capangpangan <camicrisystems@gmail.com>
+Build-Depends: cmake (>= 2.8),
+               debhelper (>= 8.0.0),
+               libgee-0.8-dev,
+               valac-0.18 | valac (>= 0.18)
+Standards-Version: 3.9.3
+
+Package: cube-server
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}, axel, aria2
+Description: Portable Package Manager for Linux
+ Download packages on any internet connected computers and install it back to your computer, offline.
