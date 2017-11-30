@@ -2,7 +2,7 @@
 
 A package is a compressed archive containing your application data. An application may have one or more packages. Cube automatically search for all packages needed by the application you want to download.
 
-Before we begin downloading specific packages, let's download first all outdated packages installed in your computer.
+Before we begin downloading specific packages, let's download first all packages that needs to be updated.
 
 # Updating Outdated Packages
 
@@ -57,7 +57,7 @@ The search bar is located at the top of the package list. Cube searches for pack
 
 # Downloading Package
 
-Click on the package you want to download in the package lister.
+Click `Download` on the package you want to download in the package lister.
 
 ![](_media/img35.png)
 
