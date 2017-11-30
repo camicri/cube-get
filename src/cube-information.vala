@@ -32,6 +32,7 @@ public class CubeInformation : GLib.Object {
 
 	public static const string launchpad_url = "https://launchpad.net/cube-server";
 	public static const string facebook_url = "https://facebook.com/camicrisystems";
+	public static const string documentation_url = "https://camicri.github.io/camicri-cube";
 
 	public static const string copyright = "Copyright (c) Camicri Systems 2010-2017";
 	
