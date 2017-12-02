@@ -164,19 +164,8 @@ public class Main
 			if ( port <= 0 )
 				port = 8080;
 		}
-
 		
 		server = new CubeServer(port, css, router);
-
-		/*
-		if ( !server.use_port(port) )
-		{
-			stdout.printf("Error : Unable to use port %d. It is either cube-server is already running or the port is used by another application. Please use another port instead.\n",port);
-			return false;
-		}
-
-		css.server_port = port;
-		*/
 		
 		server.started.connect( server_started );
 		server.stopped.connect( server_stopped );
