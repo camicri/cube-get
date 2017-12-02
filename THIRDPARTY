@@ -1,0 +1,56 @@
+Used Applications (Third Party)
+===============================
+
+Axel - A light download accelerator for Linux.
+
+COPYRIGHT
+Axel is Copyright 2001-2002 Wilmer van der Gaast.
+
+AUTHORS
+Wilmer van der Gaast. <wilmer@gaast.net>
+
+---------------
+
+aria2c - High speed download utility.
+
+Copyright (C) 2006, 2015 Tatsuhiro Tsujikawa
+
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+
+In addition, as a special exception, the copyright holders give permission to link the code of portions of this program with the OpenSSL library under certain conditions as described in each individual source file, and distribute linked combinations including the two. You must obey the GNU General Public License in all respects for all of the code used other than OpenSSL. If you modify file(s) with this exception, you may extend this exception to your version of the file(s), but you are not obligated to do so. If you do not wish to do so, delete this exception statement from your version. If you delete this exception statement from all source files in the program, then also delete it here.
+
+---------------
+
+gzip, gunzip, zcat - compress or expand files
+
+Copyright © 1998, 1999, 2001, 2002 Free Software Foundation, Inc.
+Copyright © 1992, 1993 Jean-loup Gailly
+
+Permission is granted to make and distribute verbatim
+copies of this manual provided the copyright notice
+and this permission notice are preserved on all
+copies.
+
+Permission is granted to copy and distribute modified
+versions of this manual under the conditions for ver‐
+batim copying, provided that the entire resulting
+derived work is distributed under the terms of a per‐
+mission notice identical to this one.
+
+Permission is granted to copy and distribute transla‐
+tions of this manual into another language, under the
+above conditions for modified versions, except that
+this permission notice may be stated in a translation
+approved by the Foundation.
+
+---------------
+
+Application Icons
+https://apps.ubuntu.com/site_media/icons
+
+Application Screenshots
+http://screenshots.ubuntu.com/screenshot
