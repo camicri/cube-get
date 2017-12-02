@@ -1,6 +1,6 @@
 # Installing Packages
 
-In this guide I'll show you how to transfer back your project, update outdated repositories, and install new packages.
+We will now be going to update your computer's repositories and install new packages, offline!
 
 
 ## Transferring Project
@@ -9,7 +9,7 @@ On `cube/projects` folder, delete the old project and replace it with the new pr
 
 ![](_media/img50.png)
 
-Navigate back to `cube` and double click `cube` to launch.
+Navigate back to `cube`, then double click `cube` to launch.
 
 ![](_media/img03.png)
 
@@ -21,7 +21,7 @@ Click `Cube => System => Update Computer's Repositories`.
 
 ![](_media/img51.png)
 
-A dialog will appear asking for your credentials. Note that this dialog is from your computer and not from Cube.
+A dialog from your Linux system will appear asking for your credentials.
 
 ![](_media/img52.png)
 
@@ -60,6 +60,8 @@ A dialog will appear asking for your credentials.
 And then a terminal will be launched, showing the current installation progress. This will automatically close when done.
 
 ![](_media/img60.png)
+
+You can check the complete installation output in `cube/cube-system/data/temp/install-log.txt`
 
 And yey! Your application is now installed!
 

@@ -2,7 +2,7 @@
 
 ![logo](_media/cubelogo.png)
 
-# Camicri Cube <small>4.0.1.1</small>
+# Camicri Cube <small>Series 4</small>
 
 > Portable Package Manager for Linux
 

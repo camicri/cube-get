@@ -1,30 +1,51 @@
-# Setting up on Offline Linux
+## Setting up Cube
 
-In this guide, I'm going to show you how to setup Cube on an offline Linux computer. Here, I'll be using Ubuntu 16.04 LTS. Note that this computer doesn't have internet connection.
+**About this Guide**
+
+The purpose of this entire guide is to show how you will be able to update your repositories and install new packages from your offline Linux computer using Cube, and with the help of another computer with internet access.
+
+Here, we will be going to setup Cube in your offline Linux computer. We will be using `Ubuntu 16.04 LTS` for this guide.
 
 ![](_media/img01.png)
 
-## Setting up Cube
-
-Copy and extract the downloaded cube zip in your home directory.
+Assumming that you have downloaded the cube zip, copy and extract the zip in your `home` folder. If you haven't downloaded it yet, check our [Download](#/download) page.
 
 ![](_media/img02.png)
 
-Then, open `cube` folder.
+A folder named `cube` will be extracted. Now, open the `cube` folder.
 
 ![](_media/img03.png)
+
+Cube folder contains the following:
+
+`cube-system` - where Cube's system files are stored, 
+
+`projects` - where your project files will be stored (You'll learn more about this later)
+
+`cube` - Cube's application executable.
 
 ## Launching Cube
 
 To Launch Camicri Cube, just double click the `cube` application.
+
 A terminal and a web browser will appear.
 
 ![](_media/img04.png)
 
+** Alternative way of launching cube **
+
+If Cube fails to load by double clicking the `cube` application file, you may launch it using a terminal.
+
+1. Open terminal (Press CTRL+ALT+T)
+2. Type and enter below command
+        cd ~/
+        cd cube
+        chmod +x cube
+        ./cube --terminal
 
 
 ## Creating Project
-Projects are essential in the Cube application. A project contains the information about your computer. This includes the list of repositories, currently installed packages and the architecture of your computer.
+**Projects** are essential in the Cube application. A project file will contain your Linux computer's repository list and installed packages. This data will be used by Cube in determining packages compatible in your system to be downloaded and installed.
 
 Projects created in cube will be saved in `cube/projects` directory.
 
@@ -36,7 +57,7 @@ Provide a name for your project (`myproject` in this case) and click `Create` to
 
 Click `Open` to load the project.
 
-Cube now loads your project. On this stage, Cube is now reading your project's repositories to check for all available, installed and needs to be updated packages.
+Cube will now be reading your project's repositories to check for all available, installed and needs to be updated packages.
 
 ![](_media/img08.png)
 
@@ -55,8 +76,8 @@ Close the Cube by clicking the `Cube` icon and `Quit`
 
 ![](_media/img12.png)
 
-On the project's folder `cube/projects`, compress the newly created project and save it to any removable device.
+On the project's folder `cube/projects`, compress the newly created project and transfer it to any removable device.
 
 ![](_media/img14.png)
 
-On the [next](/setup-windows) guide, we will be going to download packages on another computer with internet connection.
+On the [next](/setup-windows) guide, we will show you how to setup Cube on another computer with internet connection, and use your project to download new packages for your offline Linux computer.

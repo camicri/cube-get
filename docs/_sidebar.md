@@ -1,5 +1,5 @@
 - **Camicri Cube**
- - [About](README.md)
+ - [About](about.md)
  - [Download](download.md)
 - **Guide**
  - [Setting up on offline Linux](setup-linux.md)

@@ -1,6 +1,6 @@
 # Downloading Repositories
 
-Repositories contain the list of applications you can get for your Linux computer. These repositories should be updated to have the newest list and to know if there's new versions for your apps!
+**Repositories** contain the list of applications you can get for your Linux computer. These repositories should be updated so that you will have new list of available applications, with their latest versions.
 
 Click the `Cube -> Repository -> Download Repositories` to download new repositories. 
 
