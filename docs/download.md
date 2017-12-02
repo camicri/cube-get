@@ -8,7 +8,7 @@ We have provided portable version of Cube in zip file for Linux and Windows. No 
   <img src="_media/cubelogo.png" width="32" height="32"/> 
   <div style="margin:10px">
     <a 
-    href="">
+    href="https://launchpad.net/cube-server/4.0/4-0.1/+download/cube4_0.1-0_Linux32.zip">
       <strong>Camicri Cube 4_0.1-0</strong>
     </a>
     (32 bit)
@@ -20,7 +20,7 @@ We have provided portable version of Cube in zip file for Linux and Windows. No 
   <img src="_media/cubelogo.png" width="32" height="32"/> 
   <div style="margin:10px">
     <a 
-    href="">
+    href="https://launchpad.net/cube-server/4.0/4-0.1/+download/cube4_0.1-0_Linux64.zip">
       <strong>Camicri Cube 4_0.1-0</strong>
     </a>
     (64 bit)
@@ -33,7 +33,7 @@ We have provided portable version of Cube in zip file for Linux and Windows. No 
   <img src="_media/cubelogo.png" width="32" height="32"/> 
   <div style="margin:10px">
     <a 
-    href="">
+    href="https://launchpad.net/cube-server/4.0/4-0.1/+download/cube4_0.1-0_Windows.zip">
       <strong>Camicri Cube 4_0.1-0</strong>
     </a>
   </div>
