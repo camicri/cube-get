@@ -62,7 +62,7 @@ public class ServerCommandSystem : GLib.Object, RouterClass {
 
 	public void cmd_get_cube_data (Request req, Response res)
 	{		
-		string json = """ { "application_name" : "%s", "application_version" : "%s", "application_revision" : "%s", "description" : "%s", "short_description" : "%s", "authors" : [%s], "translators" : [%s], "launchpad_url" : "%s", "facebook_url" : "%s", "documentation_url" : "%s", "license" : "%s" } """;
+		string json = """ { "application_name" : "%s", "application_series" : "%s", "application_version" : "%s", "description" : "%s", "short_description" : "%s", "authors" : [%s], "translators" : [%s], "launchpad_url" : "%s", "facebook_url" : "%s", "documentation_url" : "%s", "license" : "%s" } """;
 		string authors = "";
 		string translators = "";
 
@@ -82,8 +82,8 @@ public class ServerCommandSystem : GLib.Object, RouterClass {
 
 		res.send(json.printf(
                    CubeInformation.application_name,
+                   CubeInformation.application_series,
                    CubeInformation.application_version,
-                   CubeInformation.application_revision,
                    CubeInformation.description,
                    CubeInformation.short_description,
                    authors,

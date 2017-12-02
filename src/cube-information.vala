@@ -20,8 +20,8 @@ trunk is free software: you can redistribute it and/or modify it
 public class CubeInformation : GLib.Object {	
 	
 	public static const string application_name = "Camicri Cube";
-	public static const string application_version = "4.0";
-	public static const string application_revision = "1";
+	public static const string application_series = "4th";
+	public static const string application_version = "0.1-0";
 	public static const string project_version = "2";
 
 	public static const string description = "Download Linux applications to any internet connected computers, and install it back to your original computer, offline.";
