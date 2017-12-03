@@ -8,7 +8,7 @@ Here, we will be going to setup Cube in your offline Linux computer. We will be 
 
 ![](_media/img01.png)
 
-Assumming that you have downloaded the cube zip, copy and extract the zip in your `home` folder. If you haven't downloaded it yet, check our [Download](#/download) page.
+Assumming that you have downloaded the cube zip, copy and extract the zip in your `home` folder. If you haven't downloaded it yet, check our [Download](/download) page.
 
 ![](_media/img02.png)
 
