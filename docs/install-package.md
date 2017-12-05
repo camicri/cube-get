@@ -17,7 +17,7 @@ Navigate back to `cube`, then double click `cube` to launch.
 
 Since we have downloaded new repositories, we need to update our computer's outdated repositories first before installing new packages.
 
-Click `Cube => System => Update Computer's Repositories`.
+Click `Cube -> System -> Update Computer's Repositories`.
 
 ![](_media/img51.png)
 
@@ -29,17 +29,17 @@ A dialog from your Linux system will appear asking for your credentials.
 
 ## Installing Package Updates
 
-To install all updates, click `Cube => Install => Mark All Downloaded for Installation` 
+To install all updates, click `Cube -> Install -> Mark All Downloaded for Installation` 
 
-And then click `Cube => Install => Install All Marked Packages` to install them.
-
-!> Note that Cube might prevent installation of some apps with packages that needs to be downloaded. To install packages with satisfied downloaded packages, click `Cube => Install => Install All Satisfied Downloaded Packages`
+And then click `Cube -> Install -> Install All Marked Packages` to install them.
 
 ![](_media/img90.png)
 
+!> Note that Cube might prevent installation of some apps with packages that needs to be downloaded. To install packages with satisfied downloaded packages, click `Cube -> Install -> Install All Satisfied Downloaded Packages`
+
 ## Installing Package
 
-Search for the package you want to be installed. To display all downloaded packages, click `Asterisk => Downloaded` to change the package filter.
+Search for the package you want to be installed. To display all downloaded packages, click `Asterisk -> Downloaded` to change the package filter.
 
 ![](_media/img55.png)
 
@@ -75,7 +75,7 @@ And yey! Your application is now installed!
 
 Now that the packages are installed, we can now remove these packages from the project to save space.
 
-Click `Cube => Project => Clean Project`.
+Click `Cube -> Project -> Clean Project`.
 
 ![](_media/img64.png)
 
@@ -87,4 +87,4 @@ Successfully cleaned!
 
 ![](_media/img66.png)
 
-!> Broken packages (Packages which have been partially downloaded will be also removed)
+!> Broken packages (Packages which have been partially downloaded) will be also removed

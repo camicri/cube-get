@@ -81,7 +81,7 @@ And your application is now downloaded!
 
 After downloading repositories and packages, it is now the time to go back to your Linux computer to install them.
 
-Click `Cube => Quit` to close Cube.
+Click `Cube -> Quit` to close Cube.
 
 Open `cube\projects` folder. Compress your project and transfer it to any removable devices.
 

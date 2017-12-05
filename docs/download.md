@@ -2,7 +2,7 @@
 
 We have provided portable version of Cube in zip file for Linux and Windows. No installation required.
 
-## For Linux
+## For Linux {docsify-ignore}
 
 <div style="display:flex; align-items:center">
   <img src="_media/cubelogo.png" width="32" height="32"/> 
@@ -27,7 +27,7 @@ We have provided portable version of Cube in zip file for Linux and Windows. No 
   </div>
 </div>
 
-## For Windows
+## For Windows {docsify-ignore}
 
 <div style="display:flex; align-items:center">
   <img src="_media/cubelogo.png" width="32" height="32"/> 
@@ -39,4 +39,4 @@ We have provided portable version of Cube in zip file for Linux and Windows. No 
   </div>
 </div>
 
-For alternative versions, check our [Launchpad Download Page](https://launchpad.net/cube-server/+download)
+For alternative versions, check our [Launchpad](https://launchpad.net/cube-server/+download) download page.
