@@ -95,19 +95,9 @@ public class ServerCommandConfiguration : GLib.Object, RouterClass {
 		string json = """ { "success" : "%s", "message" : "%s" } """ ;		
 		
 		if ( SystemInformation.get_operating_system_type() == OperatingSystemType.LINUX )
-		{
-			req.css.run_thread ( ()=> {				
-				ProcessManager.run_get_status ({"gedit",req.css.cube.project.sources_list_file});
-				return null;
-			});			
-		}
+			ProcessManager.run_get_status ({"gedit",req.css.cube.project.sources_list_file});
 		else if ( SystemInformation.get_operating_system_type() == OperatingSystemType.WINDOWS )
-		{
-			req.css.run_thread ( ()=> {
-				ProcessManager.run_get_status ({"explorer",req.css.cube.project.sources_list_file});
-				return null;
-			});			
-		}		
+			ProcessManager.run_get_status ({"explorer",req.css.cube.project.sources_list_file});
 
 		json = json.printf("true","");
 		
