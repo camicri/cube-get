@@ -66,8 +66,8 @@ partial_dir="$cache_dir/partial"
 
 apt-get -o dir::cache::archives="$cache_dir" $apt_options install $packages 2>&1 | tee $log_file
 echo Result: $? > $res_file
-grep "Need to get 0 B" $log_file
-if [[ $? -ne 0 ]] ; then
+grep "Unable to fetch some archives" $log_file
+if [[ $? -eq 0 ]] ; then
     echo Incomplete >> $res_file
 fi
 grep "Errors were encountered while processing" $log_file
@@ -143,6 +143,7 @@ fi
     private int _run(string install_script) {
         int res = 0;
         string install_result_file = Path.build_filename(_base_mgr.temporary_directory , "install-result.txt");
+        string install_log_file = Path.build_filename(_base_mgr.temporary_directory , "install-log.txt");
         string? enable_shellinabox = _base_mgr.main_configuration_file.get_value("enable-shellinabox");
 
         var install_script_file = File.new_for_path(Path.build_filename (_base_mgr.temporary_directory, "install.sh"));
@@ -199,16 +200,16 @@ fi
                     }
 
                     if (!complete) {
-                        failed ("Installation Incomplete");
+                        failed ("More packages are needed to be downloaded. See " + install_log_file + " file for details.");
                         return InstallationResultType.INCOMPLETE;
                     }
                     if (result != 0) {
-                        failed ("Installation Failed");
+                        failed ("Failed to install package(s). See " + install_log_file + " file for details.");
                         return InstallationResultType.FAILED;
                     }
                 }
             } else {
-                failed ("Installation Failed");
+                failed ("Failed to install package(s). See " + install_log_file + " file for details.");
                 return InstallationResultType.FAILED;
             }
         } catch (Error e) {
