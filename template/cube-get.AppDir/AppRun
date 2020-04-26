@@ -1,0 +1,10 @@
+#!/bin/bash
+
+HERE="$(dirname "$(readlink -f "${0}")")"
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/cube-system/lib/
+
+if [ "$1" == "--terminal" ] ; then
+    $HERE/cube-get "$@"
+else
+    xterm -e $HERE/cube-get "$@"
+fi

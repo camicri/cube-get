@@ -1,11 +1,1 @@
-Camicri Cube Series 4 Version 0.1-*
-Portable and offline package manager for Linux
-
-Camicri Cube is a portable package manager aiming to help Linux users without internet access to download applications on another internet connected computer, and install them back to their original computer, offline.
-
-Camicri Cube is a server application built in combination of Vala and Vue.
-
-Written by Jake Capangpangan <camicrisystems@gmail.com>
-
-Check out below link for a step-by-step tutorial on how to setup, download and install packages using Camicri Cube:
-https://camicri.github.io/camicri-cube
+TODO: Add usage description and release logs here.

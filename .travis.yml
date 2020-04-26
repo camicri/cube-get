@@ -1,0 +1,30 @@
+dist: bionic
+group: travis_latest
+
+os: linux
+language: python
+
+env:
+  global:
+    - CUBE_VUE_RELEASE=https://github.com/camicri/cube-vue/releases/download/1.0/cube-vue-dist.zip
+
+node_js: 10
+
+install:
+  - pip install meson ninja
+  - sudo apt-add-repository --yes ppa:vala-team
+  - sudo apt-get update
+  - sudo apt-get -y install valac libglib2.0-dev libsoup2.4-dev libgee-0.8-dev axel aria2
+script:
+  - meson builddir
+  - ninja -C builddir
+  - if [[ ! -z "${CUBE_VUE_RELEASE}" ]]; then wget $CUBE_VUE_RELEASE -O builddir/cube-vue-dist.zip; fi
+  - ninja -C builddir release
+deploy:
+  provider: releases
+  api_key: $GITHUB_TOKEN
+  file_glob: true
+  file: builddir/cube-get*.zip
+  skip_cleanup: true
+  on:
+    tags: true

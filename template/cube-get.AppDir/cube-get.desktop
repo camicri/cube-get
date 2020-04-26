@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Camicri Cube Get
+GenericName=cube-get
+Comment=Portable Package Manager for Linux
+Categories=System;
+Exec=cube-get
+Icon=cube-get
+Terminal=false
+Type=Application
+X-GNOME-Gettext-Domain=test
+X-GNOME-Keywords=Cube;
+Name[en_PH]=cube-get.desktop
