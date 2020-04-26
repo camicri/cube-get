@@ -188,8 +188,9 @@ public class CubeSystem : GLib.Object {
     public bool install_packages(Package[] pkgs) {
         process_progress_changed ("Installing Packages...", 0, 1);
         int res = _instl_mgr.start_installation(pkgs);
+        _proj.update_project_status_file();
+
         if (res == InstallationResultType.SUCCESS) {
-            _proj.update_project_status_file();
             process_progress_changed ("Installation Complete...", 1, 1);
             return true;
         }
