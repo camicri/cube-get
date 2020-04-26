@@ -18,11 +18,13 @@ A folder named `cube` will be extracted. Now, open the `cube` folder.
 
 Cube folder contains the following:
 
-`cube-system` - where Cube's system files are stored, 
+`cube-system` - where Cube's system files are stored,
 
 `projects` - where your project files will be stored (You'll learn more about this later)
 
 `cube` - Cube's application executable.
+
+!> As of version `4.1-1.1`, `cube` executable is now replaced by `cube-get`. Please use the new name on succeeding steps if you are using the newer version
 
 ## Launching Cube
 
@@ -32,7 +34,7 @@ A terminal and a web browser will appear.
 
 ![](_media/img04.png)
 
-** Alternative way of launching cube **
+**Alternative way of launching cube**
 
 If Cube fails to load by double clicking the `cube` application file, you may launch it using a terminal.
 
