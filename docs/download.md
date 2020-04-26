@@ -8,7 +8,7 @@ We have provided portable version of Cube in zip file for Linux and Windows. No 
   <img src="_media/cubelogo.png" width="32" height="32"/>
   <div style="margin:10px">
     <a
-    href="https://launchpad.net/cube-server/4.0/4-0.1/+download/cube-get_4.1-1.1_linux.zip.zip">
+    href="https://launchpad.net/cube-server/4.0/4-0.1/+download/cube-get_4.1-1.1_linux.zip">
       <strong>Camicri Cube 4.1.1-1</strong>
     </a>
     (64 bit)
