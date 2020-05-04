@@ -16,24 +16,24 @@
  */
 
 public class CubeInformation : GLib.Object {
-    public static string application_name = "Camicri Cube";
-    public static string application_series = "4th";
-    public static string application_version = "4.1-0";
-    public static string project_version = "2";
+    public const string application_name = "Camicri Cube";
+    public const string application_series = "4th";
+    public const string application_version = "4.1-1.2";
+    public const string project_version = "2";
 
-    public static string description = "Download Linux applications to any internet connected computers, and install it back to your original computer, offline.";
-    public static string short_description = "Portable Package Manager for Linux";
+    public const string description = "Download Linux applications to any internet connected computers, and install it back to your original computer, offline.";
+    public const string short_description = "Portable Package Manager for Linux";
 
-    public static string[] authors = {"Jake R. Capangpangan <camicrisystems@gmail.com>"};
-    public static string[] translators = { } ;
+    public const string[] authors = {"Jake R. Capangpangan <camicrisystems@gmail.com>"};
+    public const string[] translators = { } ;
 
-    public static string launchpad_url = "https://launchpad.net/cube-server";
-    public static string facebook_url = "https://facebook.com/camicrisystems";
-    public static string documentation_url = "https://camicri.github.io/camicri-cube";
+    public const string launchpad_url = "https://launchpad.net/cube-server";
+    public const string facebook_url = "https://facebook.com/camicrisystems";
+    public const string documentation_url = "https://cube.camicri.com";
 
-    public static string copyright = "Copyright (c) Camicri Systems 2010-2017";
+    public const string copyright = "Copyright (c) Camicri Systems 2010-2020";
 
-    public static string license =
+    public const string license =
         "Camicri Cube is free software: you can redistribute it and/or modify it " +
         "under the terms of the GNU General Public License as published by the " +
         "Free Software Foundation, either version 3 of the License, or " +
