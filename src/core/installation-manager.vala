@@ -133,8 +133,7 @@ fi
         string packages = "";
 
         foreach (Package p in _packages) {
-            string filename = File.new_for_path(p.filename).get_basename();
-            packages += "\"" + Path.build_filename(_proj.packages_directory , filename) + "\" ";
+            packages += "\"" + Path.build_filename(_proj.packages_directory , p.get_apt_filename()) + "\" ";
         }
         packages = packages.strip();
 
