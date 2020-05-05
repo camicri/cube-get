@@ -379,7 +379,7 @@ public class RepositoryManager : GLib.Object {
                 if (!_available_packages.has_key(name))
                     continue;
 
-                if (File.new_for_path(_available_packages[name].filename).get_basename() == file_info.get_name()) {
+                if (_available_packages[name].get_apt_filename() == file_info.get_name()) {
                     //Check if it is not installed
                     if (_available_packages[name].status != null) {
                         if (_available_packages[name].status == PackageStatusType.INSTALLED) {

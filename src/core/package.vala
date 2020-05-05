@@ -141,6 +141,18 @@ public class Package : GLib.Object , Comparable<Package> {
         return DebianCompare.compare(this.version, pkg.version);
     }
 
+    public string get_apt_filename() {
+        string basename = File.new_for_path(this.filename).get_basename();
+        if (this.version.contains(":")) {
+            string[] basename_parts = basename.split("_");
+            if (basename_parts.length == 3) {
+                string new_version = this.version.replace(":", "%3a");
+                basename = basename_parts[0] + "_" + new_version + "_" + basename_parts[2];
+            }
+        }
+        return basename;
+    }
+
     public static Gee.EqualDataFunc<Package>? equal_function = (a, b) => {
         if (a.name.has_prefix(b.name)) {
             return true;

@@ -75,7 +75,7 @@ public class DownloadManager : GLib.Object {
             //Axel Downloader
             DownloaderData data = create_init_downloader_data();
 
-            data.filename = File.new_for_path(p.filename).get_basename();
+            data.filename = p.get_apt_filename();
             data.link = p.filename;
             data.download_path = _download_directory;
             _data_list.add(data);
