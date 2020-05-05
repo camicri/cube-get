@@ -4,7 +4,20 @@ HERE="$(dirname "$(readlink -f "${0}")")"
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/cube-system/lib/
 
 if [ "$1" == "--terminal" ] ; then
-    $HERE/cube-get "$@"
+    echo "[Server] Running on current terminal"
+    $HERE/cube-get $@
 else
-    xterm -e $HERE/cube-get "$@"
+    if which xterm; then
+        xterm -e "$HERE/cube-get $@"
+    else
+        echo "[Server] xterm not found! Will use default terminal"
+        /etc/alternatives/x-terminal-emulator -e "$HERE/cube-get $@"
+
+        # Wait while cube-get is running
+        # 2 instances (1 for AppImage, 1 for main cube-get binary)
+        while [ $(pgrep cube-get | wc -l) -eq 2 ]; do
+            sleep 1
+        done
+        echo "[Server] Exited"
+    fi
 fi

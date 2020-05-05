@@ -24,6 +24,8 @@ public class InstallationManager : GLib.Object
     SourceManager _source_mgr;
     Project _proj;
 
+    string _default_installer;
+
     public signal void started();
     public signal void finished();
     public signal void failed(string error_message);
@@ -41,9 +43,9 @@ public class InstallationManager : GLib.Object
         if (!_proj.is_project_original_computer())
             return InstallationResultType.PROHIBITED;
 
-        string default_installer = _base_mgr.main_configuration_file.get_value("default-installer");
-        if (default_installer != null) {
-            if (default_installer == "apt-get")
+        _default_installer = _base_mgr.main_configuration_file.get_value("default-installer");
+        if (_default_installer != null) {
+            if (_default_installer == "apt-get")
                 return _start_apt_installation();
             else
                 return _start_dpkg_installation();
@@ -67,19 +69,19 @@ partial_dir="$cache_dir/partial"
 apt-get -o dir::cache::archives="$cache_dir" $apt_options install $packages 2>&1 | tee $log_file
 echo Result: $? > $res_file
 grep "Unable to fetch some archives" $log_file
-if [[ $? -eq 0 ]] ; then
+if [ $? -eq 0 ] ; then
     echo Incomplete >> $res_file
 fi
 grep "Errors were encountered while processing" $log_file
-if [[ $? -eq 0 ]] ; then
+if [ $? -eq 0 ] ; then
     echo Error >> $res_file
 fi
 
-if [[ -f $lock_file ]] ; then
+if [ -f $lock_file ] ; then
     rm -f $lock_file
 fi
 
-if [[ -d $partial_dir ]] ; then
+if [ -d $partial_dir ] ; then
     rmdir $partial_dir
 fi
 
@@ -114,11 +116,11 @@ partial_dir="$cache_dir/partial"
 dpkg %s %s | tee %s
 echo Result: $? > %s
 
-if [[ -f $lock_file ]] ; then
+if [ -f $lock_file ] ; then
     rm -f $lock_file
 fi
 
-if [[ -d $partial_dir ]] ; then
+if [ -d $partial_dir ] ; then
     rmdir $partial_dir
 fi
 """;
@@ -168,6 +170,15 @@ fi
                 }
 
                 res = ProcessManager.run_get_status (new string[]{_base_mgr.root_command_file,terminal,"-e","\""+install_script_file.get_path()+"\""});
+
+                // If terminal is not xterm, wait until default installer main process is complete.
+                if (!terminal.has_suffix("xterm")) {
+                    Thread.usleep(1000000);
+                    while(ProcessManager.run_get_status(new string[]{"pgrep", _default_installer}) == 0) {
+                        stdout.printf("[Server] Waiting for %s to finish.\n", _default_installer);
+                        Thread.usleep(1000000);
+                    }
+                }
             } else {
                 string? shellinabox_path = Which.which ("shellinaboxd",_base_mgr);
                 if (shellinabox_path != null) {

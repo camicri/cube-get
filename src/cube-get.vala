@@ -54,12 +54,12 @@ public class Main {
         }
 
         if (!initialize_cube_system()) {
-            stdout.printf("[Init] ERROR: Failed to initialize Cube System");
+            stdout.printf("[Init] ERROR: Failed to initialize Cube System\n");
             return 1;
         }
 
         if (!initialize_router()) {
-            stdout.printf("[Init] ERROR: Failed to initialize Router");
+            stdout.printf("[Init] ERROR: Failed to initialize Router\n");
             return 1;
         }
 
@@ -76,6 +76,7 @@ public class Main {
         string data_dir = "";
         string projs_dir = "";
         string cube_main_dir = Path.build_filename(Environment.get_current_dir());
+        string cube_system_dir = "";
 
         if (option_parent_directory != null) {
             if (FileUtils.test(option_parent_directory,FileTest.EXISTS))
@@ -88,7 +89,7 @@ public class Main {
         if (SystemInformation.get_operating_system_type() == OperatingSystemType.LINUX) {
             data_dir = Path.build_filename(cube_system_dir_linux ,"data");
             projs_dir = Path.build_filename(cube_main_dir ,"projects");
-            Environment.set_current_dir(cube_system_dir_linux);
+            cube_system_dir = cube_system_dir_linux;
 
             LinuxInformation linux_info = new LinuxInformation();
             if (linux_info.computer_name == "root") {
@@ -98,7 +99,14 @@ public class Main {
         } else if (SystemInformation.get_operating_system_type() == OperatingSystemType.WINDOWS) {
             data_dir = Path.build_filename(cube_system_dir_win ,"data");
             projs_dir = Path.build_filename(cube_main_dir ,"projects");
-            Environment.set_current_dir(cube_system_dir_win);
+            cube_system_dir = cube_system_dir_win;
+        }
+
+        if (FileUtils.test(cube_system_dir, FileTest.EXISTS))
+            Environment.set_current_dir(cube_system_dir);
+        else {
+            stdout.printf("[Init] ERROR: Invalid parent directory %s. Please specify correct directory. Example: ./cube-get --parent-directory=/home/user/cube-get\n", cube_main_dir);
+            return false;
         }
 
         css = new CubeServerSystem();
