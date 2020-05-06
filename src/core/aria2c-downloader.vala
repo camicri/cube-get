@@ -36,6 +36,7 @@ public class Aria2cData : Object, DownloaderData {
         arguments.add(download_path);
 
         if (filename != null) {
+            filepath = Path.build_filename (download_path, filename);
             arguments.add("-o");
             arguments.add(filename);
         }
