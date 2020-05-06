@@ -27,25 +27,18 @@ public class DependencyFinder {
 
     bool debug_flag = false;
 
-    //public DependencyFinder(Gee.HashMap<string,Package> available_packages, Gee.HashMap<string,Package> installed_packages)
     public DependencyFinder(Gee.TreeMap<string,Package> available_packages, Gee.TreeMap<string,Package> installed_packages, Gee.TreeMap<string,string> provided_packages) {
         this.available_packages = available_packages;
         this.installed_packages = installed_packages;
         this.provided_packages = provided_packages;
     }
 
-    //TODO Process Breaks and Conflicts requirements
-    //FIXME Is map_provides still needed? (Because of provided_packages map)
-    public bool get_dependencies(Package pkg, ArrayList<Package> lst_dependencies, HashMap<string,DependencyItem> map_provides = new HashMap<string,DependencyItem>()) {
+    public bool get_dependencies(Package pkg, ArrayList<Package> lst_dependencies) {
         //Check for reverse dependencies, if enabled
         if (enable_reverse_dependency_check)
-            get_reverse_dependencies(pkg, lst_dependencies, map_provides);
-
-        ArrayList<ArrayList<DependencyItem>> or_dependencies;
-        ArrayList<DependencyItem> and_dependencies;
+            get_reverse_dependencies(pkg, lst_dependencies);
 
         string? dep_string = (pkg.depends!=null?pkg.depends:"");
-
         if (pkg.pre_depends != null)
             dep_string += (dep_string!=""?",":"")+pkg.pre_depends;
         if (pkg.recommends != null)
@@ -56,147 +49,90 @@ public class DependencyFinder {
                 lst_dependencies.add(pkg);
         }
 
-        //Chop chop dependency string
+        ArrayList<ArrayList<DependencyItem>> or_dependencies;
+        ArrayList<DependencyItem> and_dependencies;
+
         DependencyListParser.parse_dependency_string (dep_string, out or_dependencies, out and_dependencies);
 
-        //Process OR Relation Dependencies
         foreach (ArrayList<DependencyItem> dep_item_list in or_dependencies) {
             DependencyItem? dep_item_curr = null;
-            bool skipped_by_provides = false;
+
             foreach (DependencyItem dep_item in dep_item_list) {
-                //For available packages
                 if (this.available_packages.has_key(dep_item.package_name)) {
                     Package p_curr = available_packages[dep_item.package_name];
 
                     //Prioritize installed/upgradable items
-                    if (p_curr.status == null || (p_curr.status != PackageStatusType.AVAILABLE || p_curr.status != PackageStatusType.DOWNLOADED) || lst_dependencies.contains(p_curr)) {
+                    if (p_curr.status == PackageStatusType.INSTALLED || p_curr.status == PackageStatusType.UPGRADABLE || lst_dependencies.contains(p_curr)) {
                         dep_item_curr = dep_item;
                         break;
                     }
-                    //Check if it is virtually provided by previously added dependencies
-                    if (_check_provides(dep_item, map_provides)) {
-                        dep_item_curr = null;
-                        skipped_by_provides = true; //Mark me as satisfied by provides!
-                        break;
-                    }
-                    //If still not satisfied by above requirements, pick the first package
-                    if (dep_item_curr == null)
+                     //If still not satisfied by above requirements, pick the first package
+                     if (dep_item_curr == null)
                         dep_item_curr = dep_item;
                 }
-                //For not available packages (Maybe virtual package)
                 //Check if it is virtually provided by previously added dependencies
-                else if (_check_provides(dep_item, map_provides)) {
-                    dep_item_curr = null;
-                    skipped_by_provides = true; //Mark me as satisfied by provides!
-                    break;
-                } else if (dep_item_curr == null) {
+                else if (dep_item_curr == null) {
                     Package? provider = _get_provider(dep_item);
+
                     if (provider != null) {
                         dep_item_curr = new DependencyItem.has_params(provider.name,null,null);
                         break;
                     }
                 }
-
             }
 
-            if (dep_item_curr != null) {
+            if (dep_item_curr != null)
                 and_dependencies.add(dep_item_curr);
-            }
-
-            //If OR package not satisified and no virtual package found
-            else if (!skipped_by_provides) {
-                stdout.printf("OR Dependency Not Satisfied for %s :(Panic!!\n", pkg.name);
+            else {
+                stdout.printf("[Dependency] OR Dependency Not Satisfied for %s. Installation may fail.\n", pkg.name);
                 if (debug_flag) stdin.read_line();
             }
         }
 
         //And Relation Dependencies
         foreach (DependencyItem dep_item in and_dependencies) {
-            //Check if it is virtually provided by previously added dependencies
-            if (_check_provides(dep_item, map_provides))
-                continue;
-
             //For not available packages (Maybe virtual package)
             if (!this.available_packages.has_key(dep_item.package_name)) {
                 Package? provider = _get_provider(dep_item);
                 if (provider != null)
                     dep_item = new DependencyItem.has_params(provider.name,null,null);
                 else {
-                    stdout.printf("AND Dependency Not Satisfied for %s. Provided package %s not found :(Panic!!\n", pkg.name,dep_item.package_name);
+                    stdout.printf("[Dependency] AND Dependency Not Satisfied for %s. Provided package %s not found. Installation may fail.\n", pkg.name,dep_item.package_name);
                     if (debug_flag) stdin.read_line();
                 }
             }
 
-            _get_dependencies_one(dep_item, /*ref*/ lst_dependencies, map_provides);
+            // Evaluate dependency
+            if (available_packages.has_key (dep_item.package_name)) {
+                Package dependency = available_packages[dep_item.package_name];
+
+                if ((dependency.status == PackageStatusType.INSTALLED || dependency.status == PackageStatusType.UPGRADABLE) && DebianCompare.compare_equality_string(dependency.installed_version, dep_item.required_version, dep_item.equality_operator)) {
+                    //Dependency Satisfied
+                    if (debug_flag) stdout.printf("[Dependency] Installed. Satisfied!\n");
+                    continue;
+                } else if (DebianCompare.compare_equality_string(dependency.installed_version, dep_item.required_version, dep_item.equality_operator)) {
+                    if (!lst_dependencies.contains(dependency)) {
+                        lst_dependencies.add(dependency);
+                        get_dependencies(dependency, lst_dependencies);
+                    }
+                    continue;
+                }
+
+                if (debug_flag) stdout.printf("[Dependency] Available. Not Satisfied! %s %s %s\n", dependency.name,dependency.version, dep_item.required_version);
+                if (debug_flag) stdin.read_line();
+            // Check if it is in the installed list
+            } else if (installed_packages.has_key(dep_item.package_name)) {
+                Package dependency = installed_packages[dep_item.package_name];
+                if ((dependency.status == PackageStatusType.INSTALLED || dependency.status == PackageStatusType.UPGRADABLE) && DebianCompare.compare_equality_string(dependency.installed_version, dep_item.required_version, dep_item.equality_operator)) {
+                    if (debug_flag) stdout.printf("[Dependency] Installed. Satisfied!\n");
+                    //Dependency Satisfied
+                    continue;
+                }
+            }
+            stdout.printf("[Dependency] AND dependency Not Satisfied for %s. Installation may fail.\n", dep_item.package_name);
         }
 
         return true;
-    }
-
-    private bool _get_dependencies_one(DependencyItem dep_item, ArrayList<Package> lst_dependencies , HashMap<string,DependencyItem> map_provides = new HashMap<string,DependencyItem>()) {
-        if (available_packages.has_key (dep_item.package_name)) {
-            Package avail_pkg = available_packages[dep_item.package_name];
-
-            //if (avail_pkg.status == "0" || avail_pkg.status == "-1" || (avail_pkg.status == "-2" && treat_downloaded_as_installed))
-            if (avail_pkg.status == PackageStatusType.INSTALLED || avail_pkg.status == PackageStatusType.UPGRADABLE) {
-                //Check if installed version is satisfied
-                if (DebianCompare.compare_equality_string(avail_pkg.installed_version, dep_item.required_version, dep_item.equality_operator) == true) {
-                    if (debug_flag) stdout.printf("Installed. Satisfied!\n");
-                    //Dependency Satisfied
-                    return true;
-                }
-                //Check if upgradable version / downloaded version is satisfied
-                //else if (avail_pkg.status == "-1" || (avail_pkg.status == "-2" && treat_downloaded_as_installed))
-                else if (avail_pkg.status == PackageStatusType.UPGRADABLE) {
-                    if (DebianCompare.compare_equality_string(avail_pkg.version, dep_item.required_version, dep_item.equality_operator) == true) {
-                        //Dependency Satisfied. Will add to dependency list because it is not installed
-                        if (!lst_dependencies.contains(avail_pkg)) {
-                            if (debug_flag) stdout.printf("Upgradable. Satisfied! Added\n");
-                            _set_provides(avail_pkg , map_provides);
-                            lst_dependencies.add(avail_pkg);
-                            get_dependencies(avail_pkg , /*ref*/ lst_dependencies , map_provides);
-                        } else if (debug_flag) stdout.printf("Upgradable. Satisfied! Already Exist\n");
-
-                        return true;
-                    } else {
-                        //Dependency not satisfied and no way to resolve it :(Panic!!
-                        if (debug_flag) stdout.printf("Upgradable. Not Satisfied! %s %s %s\n",avail_pkg.name,avail_pkg.version, dep_item.required_version);
-                        if (debug_flag) stdin.read_line();
-                        return false;
-                    }
-
-                } else {
-                    //Dependency not satisfied and no way to resolve it :(Panic!!
-                    if (debug_flag) stdout.printf("Available. Not Satisfied! %s %s %s %s\n",avail_pkg.name,avail_pkg.version, dep_item.equality_operator, dep_item.required_version);
-                    if (debug_flag) stdin.read_line();
-                    return false;
-                }
-            } else {
-                if (DebianCompare.compare_equality_string(avail_pkg.version, dep_item.required_version, dep_item.equality_operator) == true) {
-                    //Dependency Satisfied. Will add to dependency list because it is not installed
-                    if (!lst_dependencies.contains(avail_pkg)) {
-                        if (debug_flag) stdout.printf("%s Available. Satisfied. Added\n",avail_pkg.name);
-                        lst_dependencies.add(avail_pkg);
-
-                        _set_provides(avail_pkg , map_provides);
-                        get_dependencies(avail_pkg , /*ref*/ lst_dependencies , map_provides);
-                    } else if (debug_flag) stdout.printf("%s Available. Satisfied. Already Exist\n",avail_pkg.name);
-
-                    return true;
-                }
-                else {
-                    //Dependency not satisfied and no way to resolve it :(Panic!!
-                    if (debug_flag) stdout.printf("Available. Not Satisfied! %s %s %s %s\n",avail_pkg.name,avail_pkg.version, dep_item.equality_operator, dep_item.required_version);
-                    if (debug_flag) stdin.read_line();
-                    return false;
-                }
-            }
-        }
-        else {
-            //TODO Find package on installed packages and check if dependency is satisfied
-            if (debug_flag) stdout.printf("%s Not Satisfied! Please check for installed packages!\n",dep_item.package_name);
-            return false;
-        }
     }
 
     private Package? _get_provider(DependencyItem item) {
@@ -216,8 +152,8 @@ public class DependencyFinder {
 
             Package? p_curr = available_packages[provider];
 
-            //Prioritize installed/upgradable/downloaded packages
-            if ((p_curr.status != PackageStatusType.AVAILABLE || p_curr.status != PackageStatusType.DOWNLOADED) || p_curr.status != null) {
+            //Prioritize installed/upgradable packages
+            if ((p_curr.status == PackageStatusType.INSTALLED || p_curr.status == PackageStatusType.UPGRADABLE) || p_curr.status != null) {
                 p = p_curr;
                 break;
             }
@@ -229,31 +165,7 @@ public class DependencyFinder {
         return p;
     }
 
-    private void _set_provides (Package pkg, HashMap<string,DependencyItem> map_provides) {
-        //Check for provided packages
-        if (pkg.provides != null) {
-            foreach (DependencyItem prov_dep_item in DependencyListParser.convert_string_list_to_dependency_item_list(pkg.provides)) {
-                if (!map_provides.has_key (prov_dep_item.package_name))
-                        map_provides[prov_dep_item.package_name] = prov_dep_item;
-            }
-        }
-    }
-
-    private bool _check_provides (DependencyItem dep_item, HashMap<string, DependencyItem> map_provides) {
-        if (map_provides.size == 0)
-            return false;
-
-        //If the package has a required version, ignore provides
-        if (dep_item.required_version != null)
-            return false;
-
-        if (map_provides.has_key(dep_item.package_name))
-            return true;
-
-        return false;
-    }
-
-    public bool get_reverse_dependencies(Package pkg, ArrayList<Package> lst_dependencies, HashMap<string,DependencyItem> map_provides = new HashMap<string,DependencyItem>()) {
+    public bool get_reverse_dependencies(Package pkg, ArrayList<Package> lst_dependencies) {
         if (pkg.reverse_depends == null)
             return true;
 
@@ -272,9 +184,9 @@ public class DependencyFinder {
                     else
                         continue;
 
-                    get_dependencies(pkg_rev , lst_dependencies, map_provides);
+                    get_dependencies(pkg_rev , lst_dependencies);
                 } else
-                    stdout.printf("Reverse Dependency not satisifed for %s of %s, %s %s %s\n",item.package_name, pkg.name, pkg.version, item.equality_operator, item.required_version);
+                    stdout.printf("[Dependency] Reverse Dependency not satisifed for %s of %s, %s %s %s\n",item.package_name, pkg.name, pkg.version, item.equality_operator, item.required_version);
             }
         }
 
