@@ -57,7 +57,6 @@ cp /usr/bin/aria2c cube-get/cube-system/data/bin/
 ####################### DOCUMENTATION RELEASE #################################
 
 # Copy documents
-cp ../README cube-get/README
 cp ../LICENSE cube-get/LICENSE
 
 ####################### PACKAGING AND RELEASE #################################
