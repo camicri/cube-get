@@ -46,4 +46,12 @@ sources = [
     'cube-get.vala',
 ]
 
-executable('cube-get', sources, dependencies: dependencies)
+if build_machine.system() == 'windows'
+    r = run_command('windres', '../template/windres/cube-server.rc', '../builddir/src/cube-server-res.o')
+    if r.returncode() == 0
+        # FIXME: vala argument -X is being ignored when -C (enabled by default) is present
+        executable('cube-get', sources, dependencies: dependencies , vala_args: ['-X','../builddir/src/cube-server-res.o'])
+    endif
+else
+    executable('cube-get', sources, dependencies: dependencies)
+endif

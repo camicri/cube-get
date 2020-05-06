@@ -61,8 +61,8 @@ public class DependencyFinder {
                 if (this.available_packages.has_key(dep_item.package_name)) {
                     Package p_curr = available_packages[dep_item.package_name];
 
-                    //Prioritize installed/upgradable items
-                    if (p_curr.status == PackageStatusType.INSTALLED || p_curr.status == PackageStatusType.UPGRADABLE || lst_dependencies.contains(p_curr)) {
+                    //Prioritize installed items
+                    if (p_curr.status == PackageStatusType.INSTALLED || lst_dependencies.contains(p_curr)) {
                         dep_item_curr = dep_item;
                         break;
                     }
@@ -106,7 +106,7 @@ public class DependencyFinder {
             if (available_packages.has_key (dep_item.package_name)) {
                 Package dependency = available_packages[dep_item.package_name];
 
-                if ((dependency.status == PackageStatusType.INSTALLED || dependency.status == PackageStatusType.UPGRADABLE) && DebianCompare.compare_equality_string(dependency.installed_version, dep_item.required_version, dep_item.equality_operator)) {
+                if (dependency.status == PackageStatusType.INSTALLED && DebianCompare.compare_equality_string(dependency.installed_version, dep_item.required_version, dep_item.equality_operator)) {
                     //Dependency Satisfied
                     if (debug_flag) stdout.printf("[Dependency] Installed. Satisfied!\n");
                     continue;
@@ -123,7 +123,7 @@ public class DependencyFinder {
             // Check if it is in the installed list
             } else if (installed_packages.has_key(dep_item.package_name)) {
                 Package dependency = installed_packages[dep_item.package_name];
-                if ((dependency.status == PackageStatusType.INSTALLED || dependency.status == PackageStatusType.UPGRADABLE) && DebianCompare.compare_equality_string(dependency.installed_version, dep_item.required_version, dep_item.equality_operator)) {
+                if (dependency.status == PackageStatusType.INSTALLED && DebianCompare.compare_equality_string(dependency.installed_version, dep_item.required_version, dep_item.equality_operator)) {
                     if (debug_flag) stdout.printf("[Dependency] Installed. Satisfied!\n");
                     //Dependency Satisfied
                     continue;
