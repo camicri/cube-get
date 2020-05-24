@@ -38,7 +38,7 @@ public class Main {
 
     public static int main (string[] args) {
         try {
-            var opt_context = new OptionContext ("- Camicri Cube Server");
+            var opt_context = new OptionContext ("- CubeGet");
             opt_context.set_help_enabled (true);
             opt_context.add_main_entries (options, null);
             opt_context.parse (ref args);

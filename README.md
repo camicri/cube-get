@@ -1,10 +1,10 @@
 <p align="center">
-<img src="https://camicri.github.io/camicri-cube/_media/cubelogo.png">
+<img src="https://camicri.github.io/cube-get/_media/cubelogo.png">
 </p>
 
-# Camicri Cube (cube-get)
+# Cube Get
 Portable and offline package manager for Linux
-[![Build Status](https://travis-ci.com/camicri/camicri-cube.svg?branch=master)](https://travis-ci.com/camicri/camicri-cube)
+[![Build Status](https://travis-ci.com/camicri/cube-get.svg?branch=master)](https://travis-ci.com/camicri/cube-get)
 
 ### Build setup
 ```

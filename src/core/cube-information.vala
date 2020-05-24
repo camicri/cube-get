@@ -16,9 +16,9 @@
  */
 
 public class CubeInformation : GLib.Object {
-    public const string application_name = "Camicri Cube";
+    public const string application_name = "CubeGet";
     public const string application_series = "4th";
-    public const string application_version = "4.2-1.2";
+    public const string application_version = "4.3-1.2";
     public const string project_version = "2";
 
     public const string description = "Download Linux applications to any internet connected computers, and install it back to your original computer, offline.";
@@ -34,12 +34,12 @@ public class CubeInformation : GLib.Object {
     public const string copyright = "Copyright (c) Camicri Systems 2010-2020";
 
     public const string license =
-        "Camicri Cube is free software: you can redistribute it and/or modify it " +
+        "cube-get is free software: you can redistribute it and/or modify it " +
         "under the terms of the GNU General Public License as published by the " +
         "Free Software Foundation, either version 3 of the License, or " +
         "(at your option) any later version.\\n" +
         "\\n" +
-        "Camicri Cube is distributed in the hope that it will be useful, but " +
+        "cube-get is distributed in the hope that it will be useful, but " +
         "WITHOUT ANY WARRANTY; without even the implied warranty of " +
         "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. " +
         "See the GNU General Public License for more details.\\n" +

@@ -2,11 +2,11 @@
 
 ![logo](_media/cubelogo.png)
 
-# Camicri Cube <small>Series 4</small>
+# CubeGet {docsify-ignore}
 
 > Portable Package Manager for Linux
 
 Download packages on internet connected computer and install them back, offline!
 
-[GitHub](https://github.com/camicri/camicri-cube)
-[Get Started](#camicri-cube)
+[GitHub](https://github.com/camicri/cube-get)
+[Get Started](#about-cubeget)

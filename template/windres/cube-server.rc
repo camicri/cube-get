@@ -1,7 +1,7 @@
 id ICON "cube.ico"
 1 VERSIONINFO
-FILEVERSION     4,2,1,2
-PRODUCTVERSION  4,2,1,2
+FILEVERSION     4,3,1,2
+PRODUCTVERSION  4,3,1,2
 BEGIN
   BLOCK "StringFileInfo"
   BEGIN
@@ -9,12 +9,12 @@ BEGIN
     BEGIN
       VALUE "CompanyName", "Camicri Systems"
       VALUE "FileDescription", "Portable Package Manager for Linux"
-      VALUE "FileVersion", "4.2-1.2"
-      VALUE "InternalName", "Camicri Cube Server"
+      VALUE "FileVersion", "4.3-1.2"
+      VALUE "InternalName", "CubeGet"
       VALUE "LegalCopyright", "Jake R. Capangpangan <camicrisystems@gmail.com>"
       VALUE "OriginalFilename", "cube.exe"
-      VALUE "ProductName", "Camicri Cube Server"
-      VALUE "ProductVersion", "4.2-1.2"
+      VALUE "ProductName", "CubeGet"
+      VALUE "ProductVersion", "4.3-1.2"
     END
   END
 

@@ -28,7 +28,7 @@ Cube folder contains the following:
 
 ## Launching Cube
 
-To Launch Camicri Cube, just double click the `cube` application.
+To Launch CubeGet, just double click the `cube` application.
 
 A terminal and a web browser will appear.
 

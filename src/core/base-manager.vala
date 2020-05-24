@@ -276,7 +276,7 @@ public class BaseManager {
         if (!FileUtils.test (_config_file,FileTest.EXISTS)) {
             //Create Main Configuration File
             headers = new string[]{
-                "#Camicri Cube Main Configuration File",
+                "#CubeGet Main Configuration File",
                 "#This is the global configuration file of cube. Entering incorrect configuration values may break the whole cube system.",
                 "#Format : <key>:<val>"
             };
@@ -288,7 +288,7 @@ public class BaseManager {
         if (!FileUtils.test (_app_share_config_file,FileTest.EXISTS)) {
             //Create App Share Configuration
             headers = new string[]{
-                "#Camicri Cube App Share Configuration File",
+                "#CubeGet App Share Configuration File",
                 "#Format : <Project Distribution=Host Distribution> : <Project Distribution Version1>=<Host Distribution Version1>;<v2>=<v2>;..."
             };
 
@@ -299,7 +299,7 @@ public class BaseManager {
         if (!FileUtils.test (_sections_config_file,FileTest.EXISTS)) {
             //Create Sections Configuration
             headers = new string[]{
-                "#Camicri Cube Package Sections",
+                "#CubeGet Package Sections",
                 "#Format : <keyword>:<description>"
             };
 

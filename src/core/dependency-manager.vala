@@ -110,7 +110,7 @@ public class DependencyFinder {
                     //Dependency Satisfied
                     if (debug_flag) stdout.printf("[Dependency] Installed. Satisfied!\n");
                     continue;
-                } else if (DebianCompare.compare_equality_string(dependency.installed_version, dep_item.required_version, dep_item.equality_operator)) {
+                } else if (DebianCompare.compare_equality_string(dependency.version, dep_item.required_version, dep_item.equality_operator)) {
                     if (!lst_dependencies.contains(dependency)) {
                         lst_dependencies.add(dependency);
                         get_dependencies(dependency, lst_dependencies);

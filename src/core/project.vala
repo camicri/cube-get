@@ -181,7 +181,7 @@ public class Project {
            );
 
             string[] headers = new string[]{
-                "#Camicri Cube Project Information File"
+                "#CubeGet Project Information File"
             };
 
             update_project();

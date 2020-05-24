@@ -3,16 +3,16 @@
 	<id>cube-get</id>
 	<metadata_license>GPL-3.0</metadata_license>
 	<project_license>GPL-2.0+</project_license>
-	<name>Camicri Cube Get</name>
+	<name>CubeGet</name>
 	<summary>Portable Package Manager for Linux</summary>
 	<description>
 		<p>Download applications on any internet connected computers (Linux or Windows), and install it back to your computer, offline</p>
 	</description>
 	<launchable type="desktop-id">cube-get.desktop</launchable>
-	<url type="homepage">https://camicri.github.io/camicri-cube</url>
+	<url type="homepage">https://camicri.github.io/cube-get</url>
 	<screenshots>
 		<screenshot type="default">
-			<image>https://camicri.github.io/camicri-cube/_media/cover.png</image>
+			<image>https://camicri.github.io/cube-get/_media/cover.png</image>
 		</screenshot>
 	</screenshots>
 	<provides>
