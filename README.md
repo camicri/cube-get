@@ -4,7 +4,7 @@
 
 # CubeGet
 Portable and offline package manager for Linux
-[![Build Status](https://travis-ci.com/camicri/cube-get.svg?branch=master)](https://travis-ci.com/camicri/cube-get)
+[![Build Status](https://travis-ci.com/camicri/camicri-cube.svg?branch=master)](https://travis-ci.com/camicri/camicri-cube)
 
 ### Build setup
 ```
