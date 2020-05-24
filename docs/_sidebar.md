@@ -1,4 +1,4 @@
-- **Camicri Cube**
+- **CubeGet**
  - [About](about.md)
  - [Download](download.md)
 - **Guide**
