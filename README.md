@@ -1,8 +1,8 @@
 <p align="center">
-<img src="https://camicri.github.io/cube-get/_media/cubelogo.png">
+<img src="https://cube.camicri.com/_media/cubelogo.png">
 </p>
 
-# Cube Get
+# CubeGet
 Portable and offline package manager for Linux
 [![Build Status](https://travis-ci.com/camicri/cube-get.svg?branch=master)](https://travis-ci.com/camicri/cube-get)
 
@@ -26,7 +26,7 @@ This will generate `cube-get_version_linux.zip` on builddir directory.
 Make sure to perform build and release first as this will prepare necessary files (including `cube-vue`) and project directories on `builddir`.
 Main directory will be generated at `builddir/cube-get`. Full path is required on `--parent-directory`.
 ```
-./builddir/src/cube-get --parent-directory=/home/cami/repos/cube-get/builddir/cube-get
+ninja -C builddir && ./builddir/src/cube-get --parent-directory=/home/cami/repos/cube-get/builddir/cube-get
 ```
 
 ### Development
