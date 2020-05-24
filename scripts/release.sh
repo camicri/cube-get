@@ -61,7 +61,7 @@ cp ../LICENSE cube-get/LICENSE
 
 ####################### PACKAGING AND RELEASE #################################
 
-mv Camicri_Cube_Get-x86_64.AppImage cube-get/cube-get
+mv CubeGet-x86_64.AppImage cube-get/cube-get
 
 zip -r cube-get_$version"_linux.zip" cube-get/*
 echo "Release files: "
