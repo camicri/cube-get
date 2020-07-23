@@ -18,7 +18,7 @@
 public class CubeInformation : GLib.Object {
     public const string application_name = "CubeGet";
     public const string application_series = "4th";
-    public const string application_version = "4.3-1.3";
+    public const string application_version = "4.3.1-1.3";
     public const string project_version = "2";
 
     public const string description = "Download Linux applications to any internet connected computers, and install it back to your original computer, offline.";
