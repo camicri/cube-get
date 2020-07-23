@@ -56,14 +56,18 @@ public class Source : Object {
      * */
 
     public Source (string source_entry_line, string raw_link, string raw_url, string raw_release, string raw_component, string raw_release_filename) {
+        string protocol = "http";
+        if (raw_link.contains("https://"))
+            protocol = "https";
+
         _source_entry_line = source_entry_line;
         _link = raw_link;
         _url = raw_url;
-        _filename = raw_link.replace("http://", "").replace("http:/", "").replace(".gz", "").replace("/", "_").strip();
+        _filename = raw_link.replace(protocol + "://", "").replace(protocol + ":/", "").replace(".gz", "").replace("/", "_").strip();
         _release = raw_release;
-        _origin = raw_link.replace("http://", "").replace("http:/", "").split("/",-1)[0];
+        _origin = raw_link.replace(protocol + "://", "").replace(protocol + ":/", "").split("/",-1)[0];
         _release_filename = raw_release_filename;
-        _ppa = raw_link.replace ("http://", "").replace ("http:/", "").split("/ubuntu/dists",-1)[0].strip();
+        _ppa = raw_link.replace (protocol + "://", "").replace (protocol + ":/", "").split("/ubuntu/dists",-1)[0].strip();
         _ppa_short = _ppa.replace("ppa.launchpad.net/","ppa:");
         _component = raw_component;
         _name = _ppa + " " + _release + " " + _component;

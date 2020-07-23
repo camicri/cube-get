@@ -70,6 +70,7 @@ public class SourceManager : GLib.Object {
                 var source_stream = new DataInputStream(File.new_for_path(Path.build_filename(_sources_dir_path , source_file)).read());
                 string line;
                 string source_entry_line = "";
+                string protocol = "http";
 
                 while ((line = source_stream.read_line(null,null)) != null) {
                     line = line.strip();
@@ -84,8 +85,14 @@ public class SourceManager : GLib.Object {
                     if (line.contains("#"))
                         line = line.split("#",2)[0].strip();
 
+
+                    if (line.contains("https://"))
+                        protocol = "https";
+                    else
+                        protocol = "http";
+
                     line = line.replace("deb ", "").replace("\"","").strip();
-                    line = line.replace("http://","").strip();
+                    line = line.replace(protocol + "://","").strip();
 
                     /* Ignore entries enclosed with [] */
                     try {
@@ -111,10 +118,10 @@ public class SourceManager : GLib.Object {
 
                     for (int i = 1 ; i < line_split.length ; i++) {
                         string raw_component = line_split[i];
-                        line = "http://" + raw_main_source + "/" + raw_component + "/" + _architecture + "/Packages.gz";
+                        line = protocol + "://" + raw_main_source + "/" + raw_component + "/" + _architecture + "/Packages.gz";
                         if (!_sources_key_list.contains(line)) {
                             _sources_key_list.add(line);
-                            _sources_list.add(new Source(source_entry_line, line, "http://"+raw_main_url, raw_release, raw_component, "rel.ReleaseFilename"));
+                            _sources_list.add(new Source(source_entry_line, line, protocol + "://"+raw_main_url, raw_release, raw_component, "rel.ReleaseFilename"));
                         }
                     }
                 }
