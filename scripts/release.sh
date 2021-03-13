@@ -49,6 +49,8 @@ fi
 # Copy library dependencies
 cp /usr/lib/x86_64-linux-gnu/libgee-0.8.so.2 cube-get/cube-system/lib/
 cp /usr/lib/x86_64-linux-gnu/libsoup-2.4.so.1 cube-get/cube-system/lib/
+cp /usr/lib/x86_64-linux-gnu/libssl.so.1.1 cube-get/cube-system/lib/
+cp /usr/lib/x86_64-linux-gnu/libcrypto.so.1.1 cube-get/cube-system/lib/
 
 # Copy binary dependencies
 cp /usr/bin/axel cube-get/cube-system/data/bin/
