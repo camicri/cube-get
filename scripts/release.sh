@@ -42,7 +42,7 @@ if [ ! -f "./appimagetool-x86_64.AppImage" ]; then
     chmod a+x appimagetool-x86_64.AppImage
 fi
 
-./appimagetool-x86_64.AppImage cube-get.AppDir
+./appimagetool-x86_64.AppImage -n cube-get.AppDir
 
 ####################### LIBRARY DEPENDENCY RELEASE ############################
 
