@@ -23,12 +23,12 @@ jobs:
             base-devel
             git
             axel
-            meson
             zip
             unzip
             mingw-w64-x86_64-vala
             mingw-w64-x86_64-aria2
             mingw-w64-x86_64-libsoup
+            mingw-w64-x86_64-meson
       - name: Setup Node
         run: | 
           wget https://nodejs.org/dist/v19.5.0/node-v19.5.0-win-x64.zip -O node.zip
