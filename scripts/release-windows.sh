@@ -55,8 +55,11 @@ cp /mingw64/bin/zlib1.dll cube-get/
 cp /bin/msys-2.0.dll cube-get/
 
 # Copy binary dependencies
-cp /usr/bin/axel cube-get/cube-system/data/bin/
-cp /mingw64/bin/aria2c cube-get/cube-system/data/bin/
+# cp /usr/bin/axel cube-get/cube-system/data/bin/
+# cp /mingw64/bin/libaria2-0.dll cube-get/cube-system/data/bin/
+# cp /mingw64/bin/aria2c cube-get/cube-system/data/bin/
+wget https://github.com/camicri/cube-get/releases/download/4.4.7/windows-binaries.zip
+unzip windows-binaries.zip -d cube-get/cube-system/data/bin/
 
 ####################### DOCUMENTATION RELEASE #################################
 
