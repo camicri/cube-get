@@ -28,6 +28,7 @@ jobs:
             mingw-w64-x86_64-vala
             mingw-w64-x86_64-aria2
             mingw-w64-x86_64-libsoup
+            mingw-w64-x86_64-python3 
             mingw-w64-x86_64-meson
       - name: Setup Node
         run: | 
