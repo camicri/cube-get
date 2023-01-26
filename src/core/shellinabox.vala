@@ -38,7 +38,7 @@ public class ShellInABox : GLib.Object {
     }
 
     public int run(string arguments) {
-        string[3] argument_arr = new string[4];
+        string[] argument_arr = new string[4];
         int status = 0;
 
         try {
