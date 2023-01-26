@@ -65,6 +65,6 @@ cp ../LICENSE cube-get/LICENSE
 
 mv CubeGet-x86_64.AppImage cube-get/cube-get
 
-zip -r cube-get_$version"_linux.zip" cube-get/*
+zip -r cube-get_$version"_linux_"`lsb_release -rs`".zip" cube-get/*
 echo "Release files: "
 ls -l *.zip
