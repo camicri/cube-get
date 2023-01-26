@@ -75,7 +75,7 @@ jobs:
           meson builddir
           ninja -C builddir
           ninja -C builddir 
-    build-windows:
+  build-windows:
     runs-on: windows-latest
     defaults:
       run:
