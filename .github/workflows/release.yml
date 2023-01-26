@@ -9,7 +9,7 @@ jobs:
     name: Release Linux
     strategy:
       matrix:
-        os: [ubuntu-22.04]
+        os: [ubuntu-22.04, ubuntu-20.04]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout source
@@ -31,10 +31,8 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "builddir/cube-get*.zip"
-      - uses: actions/upload-artifact@v3
-        if: failure()
-        with:
-          artifacts: "builddir/cube-get*.zip"
+          draft: true
+          skipIfReleaseExists: true
   release-windows:
     name: Release Windows
     runs-on: windows-latest
@@ -83,3 +81,5 @@ jobs:
         if: failure()
         with:
           artifacts: "builddir/cube-get*.zip"
+          draft: true
+          skipIfReleaseExists: true
