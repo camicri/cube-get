@@ -1,5 +1,5 @@
 project('cube_get', 'vala', 'c',
-    version : '4.4.6',
+    version : '4.4.7',
 )
 
 subdir('src')
