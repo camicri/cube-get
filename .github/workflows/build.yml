@@ -8,7 +8,8 @@ on:
       - 'meson.build'
 
 jobs:
-  build:
+  build-linux:
+    name: Build Linux
     strategy:
       matrix:
         os: [ubuntu-22.04, ubuntu-20.04]
@@ -24,6 +25,45 @@ jobs:
           sudo apt-add-repository --yes ppa:vala-team
           sudo apt-get update
           sudo apt-get -y install valac libglib2.0-dev libsoup2.4-dev libgee-0.8-dev axel aria2 libfuse2
+      - name: Build
+        run: | 
+          meson builddir
+          ninja -C builddir
+  build-windows:
+    name: Build Windows
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+      - uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: >-
+            base-devel
+            binutils
+            git
+            axel
+            zip
+            unzip
+            gcc
+            mingw-w64-x86_64-vala
+            mingw-w64-x86_64-aria2
+            mingw-w64-x86_64-libsoup
+            mingw-w64-x86_64-python3 
+            mingw-w64-x86_64-meson
+            mingw-w64-x86_64-glib2
+            mingw-w64-x86_64-pkg-config
+            mingw-w64-x86_64-libffi
+            mingw-w64-x86_64-pcre2
+            mingw-w64-x86_64-libgee
+      - name: Setup Node
+        run: | 
+          wget https://nodejs.org/dist/v19.5.0/node-v19.5.0-win-x64.zip -O node.zip
+          unzip node.zip
+          cp -R node-*/* /usr/bin
       - name: Build
         run: | 
           meson builddir
