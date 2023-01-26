@@ -6,22 +6,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.7", "3.8", "3.9", "3.10"]
     steps:
       - name: Checkout source
         uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python
         uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: | 
           pip install meson ninja
           sudo apt-add-repository --yes ppa:vala-team
           sudo apt-get update
-          sudo apt-get -y install valac libglib2.0-dev libsoup2.4-dev libgee-0.8-dev axel aria2
+          sudo apt-get -y install valac libglib2.0-dev libsoup2.4-dev libgee-0.8-dev axel aria2 libfuse2
       - name: Build
         run: | 
           meson builddir
