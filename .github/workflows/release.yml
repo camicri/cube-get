@@ -8,7 +8,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-22.04, ubuntu-20.04]
+        os: [ubuntu-22.04]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout source
@@ -29,4 +29,4 @@ jobs:
       - name: Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "cube-get*.zip"
+          artifacts: "*.zip"
