@@ -33,7 +33,7 @@ cp cube-vue/dist/index.html cube-get/cube-system/data/server/html/
 cp /mingw64/bin/gspawn-win64-helper-console.exe cube-get/
 cp /mingw64/bin/libbrotlicommon.dll cube-get/
 cp /mingw64/bin/libbrotlidec.dll cube-get/
-cp /mingw64/bin/libffi-7.dll cube-get/
+cp /mingw64/bin/libffi-8.dll cube-get/
 cp /mingw64/bin/libgcc_s_seh-1.dll cube-get/
 cp /mingw64/bin/libgee-0.8-2.dll cube-get/
 cp /mingw64/bin/libgio-2.0-0.dll cube-get/
@@ -44,7 +44,7 @@ cp /mingw64/bin/libiconv-2.dll cube-get/
 cp /mingw64/bin/libidn2-0.dll cube-get/
 cp /mingw64/bin/libintl-8.dll cube-get/
 cp /mingw64/bin/liblzma-5.dll cube-get/
-cp /mingw64/bin/libpcre-1.dll cube-get/
+cp /mingw64/bin/libpcre2-32-0.dll cube-get/
 cp /mingw64/bin/libpsl-5.dll cube-get/
 cp /mingw64/bin/libsoup-2.4-1.dll cube-get/
 cp /mingw64/bin/libsqlite3-0.dll cube-get/
@@ -52,9 +52,7 @@ cp /mingw64/bin/libunistring-2.dll cube-get/
 cp /mingw64/bin/libwinpthread-1.dll cube-get/
 cp /mingw64/bin/libxml2-2.dll cube-get/
 cp /mingw64/bin/zlib1.dll cube-get/
-
-# pacman -S axel
-# pacman -S mingw-w64-x86_64-aria2
+cp /bin/msys-2.0.dll cube-get/
 
 # Copy binary dependencies
 cp /usr/bin/axel cube-get/cube-system/data/bin/
@@ -69,7 +67,6 @@ cp ../LICENSE cube-get/LICENSE
 
 cp src/cube-get.exe cube-get/
 
-# pacman -S zip
 zip -r cube-get_$version"_windows.zip" cube-get/*
 echo "Release files: "
 ls -l *.zip
