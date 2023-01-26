@@ -1,7 +1,8 @@
-name: Build
-on:
+name: Release
+on: 
   push:
-    branches: [ master ]
+    tags:
+    - '*'
 
 jobs:
   build:
@@ -24,3 +25,8 @@ jobs:
         run: | 
           meson builddir
           ninja -C builddir
+          ninja -C builddir release
+      - name: Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "cube-get*.zip"
