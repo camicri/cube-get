@@ -44,7 +44,7 @@ cp /mingw64/bin/libiconv-2.dll cube-get/
 cp /mingw64/bin/libidn2-0.dll cube-get/
 cp /mingw64/bin/libintl-8.dll cube-get/
 cp /mingw64/bin/liblzma-5.dll cube-get/
-cp /mingw64/bin/libpcre2-32-0.dll cube-get/
+cp /mingw64/bin/libpcre2-8-0.dll cube-get/
 cp /mingw64/bin/libpsl-5.dll cube-get/
 cp /mingw64/bin/libsoup-2.4-1.dll cube-get/
 cp /mingw64/bin/libsqlite3-0.dll cube-get/

@@ -31,8 +31,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "builddir/cube-get*.zip"
-          draft: true
-          skipIfReleaseExists: true
+          allowUpdates: true
   release-windows:
     name: Release Windows
     runs-on: windows-latest
@@ -77,9 +76,4 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "builddir/cube-get*.zip"
-      - uses: actions/upload-artifact@v3
-        if: failure()
-        with:
-          artifacts: "builddir/cube-get*.zip"
-          draft: true
-          skipIfReleaseExists: true
+          allowUpdates: true
