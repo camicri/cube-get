@@ -41,10 +41,21 @@ If Cube fails to load by double clicking the `cube` application file, you may la
 1. Open terminal (Press CTRL+ALT+T)
 2. Type and enter below command
         cd ~/
-        cd cube
+        cd cube-get
         chmod +x cube
-        ./cube --terminal
+        ./cube-get --terminal
 
+If you encouter the following error due to missing libfuse:
+        dlopen(): error loading libfuse.so.2
+        AppImages require FUSE to run.
+        You might still be able to extract the contents of this AppImage
+        if you run it with the --appimage-extract option.
+        See https://github.com/AppImage/AppImageKit/wiki/FUSE
+        for more information
+
+Run the following on terminal (Without libfuse support):
+        cube-get --appimage-extract
+        ./squashfs-root/AppRun --terminal
 
 ## Creating Project
 **Projects** are essential in the Cube application. A project file will contain your Linux computer's repository list and installed packages. This data will be used by Cube in determining packages compatible in your system to be downloaded and installed.
