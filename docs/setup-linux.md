@@ -42,7 +42,7 @@ If Cube fails to load by double clicking the `cube` application file, you may la
 2. Type and enter below command
         cd ~/
         cd cube-get
-        chmod +x cube
+        chmod +x cube-get
         ./cube-get --terminal
 
 If you encouter the following error due to missing libfuse:
