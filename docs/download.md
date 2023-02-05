@@ -8,10 +8,9 @@ We have provided portable version of Cube in zip file for Linux and Windows. No 
   <img src="_media/cubelogo.png" width="32" height="32"/>
   <div style="margin:10px">
     <a
-    href="https://launchpad.net/cube-server/4.0/4-0.1/+download/cube-get_4.3-1.3_linux.zip">
-      <strong>cube-get 4.3-1.3</strong>
+    href="https://github.com/camicri/cube-get/releases/download/4.4.8/cube-get_4.4.8_linux_22.04.zip">
+      <strong>cube-get 4.4.8</strong>
     </a>
-    (64 bit)
   </div>
 </div>
 
@@ -21,10 +20,9 @@ We have provided portable version of Cube in zip file for Linux and Windows. No 
   <img src="_media/cubelogo.png" width="32" height="32"/>
   <div style="margin:10px">
     <a
-    href="https://launchpad.net/cube-server/4.0/4-0.1/+download/cube-get_4.3-1.3_windows.zip">
-      <strong>cube-get 4.3-1.3</strong>
+    href="https://github.com/camicri/cube-get/releases/download/4.4.8/cube-get_4.4.8_windows.zip">
+      <strong>cube-get 4.4.8</strong>
     </a>
-    (64 bit)
   </div>
 </div>
 
