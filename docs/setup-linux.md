@@ -58,7 +58,7 @@ for more information
 
 Run the following on terminal (Without libfuse support):
 ```
-cube-get --appimage-extract
+./cube-get --appimage-extract
 ./squashfs-root/AppRun --terminal
 ```
 
